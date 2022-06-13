@@ -5,6 +5,12 @@
 *.suo
 *.user
 *.sln.docstates
+.git/*
+x64/*
+.vs/*
+Debug/*
+cppOpenGL/Debug/*
+cppOpenGL/x64/*
 
 # Build results
 
