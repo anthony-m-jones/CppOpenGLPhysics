@@ -1,8 +1,13 @@
+#define _USE_MATH_DEFINES
+
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <../Source/ShaderUtil.h>
 #include <vector>
+#include <../Source/Vector2.h>
+#include <math.h>
+#include <cmath>
 
 std::vector<float> ballVelocity = { 0, 0, 0 };
 bool upPressed = false;
@@ -81,6 +86,18 @@ int main(void)
     float ballPosX = 0, ballPosY = 0;
     float accelleration = 0.0001f;
     glfwSetKeyCallback(window, key_callback);
+
+    MyCppOpenGLProject::Vector2 v1{ 10,5 }, v2{ 3,4 }, v3 = v1 + v2;
+    std::cout << "My Vector2 Angle: " + std::to_string(v3.GetAngle()) << std::endl;
+    std::cout << "My Vector2 Length: " + std::to_string(v3.GetLength()) << std::endl;
+    std::cout << "My Vector2 X: " + std::to_string(v3.GetX()) << std::endl;
+    std::cout << "My Vector2 Y: " + std::to_string(v3.GetY()) << std::endl;
+
+    v3 = v3 * 2;
+    std::cout << "My Vector2 Angle: " + std::to_string(v3.GetAngle()) << std::endl;
+    std::cout << "My Vector2 Length: " + std::to_string(v3.GetLength()) << std::endl;
+    std::cout << "My Vector2 X: " + std::to_string(v3.GetX()) << std::endl;
+    std::cout << "My Vector2 Y: " + std::to_string(v3.GetY()) << std::endl;
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
