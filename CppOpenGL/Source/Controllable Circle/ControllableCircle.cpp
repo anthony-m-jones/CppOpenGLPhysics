@@ -10,9 +10,10 @@
 #include <math.h>
 #include <cmath>
 
-std::vector<MyCppOpenGLProject::Particle2> particles;
+MyCppOpenGLProject::Particle2 ball{ 0,0,0,0,0 };
+MyCppOpenGLProject::Vector2 acceleration{ 0,0 };
 
-const int NUM_PARTICLES = 1000;
+const float accel = 0.001f;
 
 bool upPressed = false;
 bool downPressed = false;
@@ -38,40 +39,31 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 {
     // Set up pressed
     if (key == GLFW_KEY_UP && action == GLFW_PRESS)
-        upPressed = true;
+        acceleration.SetY(accel);
     if (key == GLFW_KEY_UP && action == GLFW_RELEASE)
-        upPressed = false;
+        acceleration.SetY(0);
 
     // Set down pressed
     if (key == GLFW_KEY_DOWN && action == GLFW_PRESS)
-        downPressed = true;
+        acceleration.SetY(-accel);
     if (key == GLFW_KEY_DOWN && action == GLFW_RELEASE)
-        downPressed = false;
+        acceleration.SetY(0);
 
     // Set left pressed
     if (key == GLFW_KEY_LEFT && action == GLFW_PRESS)
-        leftPressed = true;
+        acceleration.SetX(-accel);
     if (key == GLFW_KEY_LEFT && action == GLFW_RELEASE)
-        leftPressed = false;
+        acceleration.SetX(0);
 
     // Set right pressed
     if (key == GLFW_KEY_RIGHT && action == GLFW_PRESS)
-        rightPressed = true;
+        acceleration.SetX(accel);
     if (key == GLFW_KEY_RIGHT && action == GLFW_RELEASE)
-        rightPressed = false;
-}
-
-// Returns a random float value between 0.0f and 1.0f inclusive
-float rand0to1() {
-    return static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+        acceleration.SetX(0);
 }
 
 int main(void)
 {
-    for (int i = 0; i < NUM_PARTICLES; i++) {
-        particles.push_back(MyCppOpenGLProject::Particle2(0, 0.33f, 0.02f * rand0to1() + 0.01f, M_PI * 2 * rand0to1(), -0.0005f));
-    }
-
     GLFWwindow* window;
 
     /* Initialize the library */
@@ -106,10 +98,9 @@ int main(void)
         glClear(GL_COLOR_BUFFER_BIT);
 
         // Render ball
-        for (int i = 0; i < NUM_PARTICLES; i++) {
-            particles[i].Update();
-            DrawCircle(particles[i].position.GetX(), particles[i].position.GetY(), 0.01f, 45);
-        }
+        ball.Accelerate(acceleration);
+        ball.Update();
+        DrawCircle(ball.position.GetX(), ball.position.GetY(), 0.01f, 20);
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);

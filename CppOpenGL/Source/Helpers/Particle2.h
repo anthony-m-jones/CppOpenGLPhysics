@@ -1,5 +1,5 @@
 #pragma once
-#include <../Source/Vector2.h>
+#include <../Source/Helpers/Vector2.h>
 
 namespace MyCppOpenGLProject {
 	class Particle2 {

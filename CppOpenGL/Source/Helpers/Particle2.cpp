@@ -1,4 +1,4 @@
-#include <../Source/Particle2.h>
+#include <../Source/Helpers/Particle2.h>
 
 namespace MyCppOpenGLProject {
 	Particle2::Particle2(float x, float y, float speed, float direction, float grav = 0) {

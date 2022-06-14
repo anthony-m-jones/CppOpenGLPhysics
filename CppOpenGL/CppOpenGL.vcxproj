@@ -151,15 +151,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Controllable Circle\ControllableCircle.cpp" />
     <ClCompile Include="Source\Main.cpp" />
-    <ClCompile Include="Source\Particle2.cpp" />
-    <ClCompile Include="Source\ShaderUtil.cpp" />
-    <ClCompile Include="Source\Vector2.cpp" />
+    <ClCompile Include="Source\Helpers\Particle2.cpp" />
+    <ClCompile Include="Source\Helpers\ShaderUtil.cpp" />
+    <ClCompile Include="Source\Helpers\Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Particle2.h" />
-    <ClInclude Include="Source\ShaderUtil.h" />
-    <ClInclude Include="Source\Vector2.h" />
+    <ClInclude Include="Source\Helpers\Particle2.h" />
+    <ClInclude Include="Source\Helpers\ShaderUtil.h" />
+    <ClInclude Include="Source\Helpers\Vector2.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\fs.shader" />

@@ -18,24 +18,27 @@
     <ClCompile Include="Source\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ShaderUtil.cpp">
+    <ClCompile Include="Source\Helpers\ShaderUtil.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Particle2.cpp">
+    <ClCompile Include="Source\Helpers\Particle2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Vector2.cpp">
+    <ClCompile Include="Source\Helpers\Vector2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Controllable Circle\ControllableCircle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\ShaderUtil.h">
+    <ClInclude Include="Source\Helpers\ShaderUtil.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Vector2.h">
+    <ClInclude Include="Source\Helpers\Vector2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Particle2.h">
+    <ClInclude Include="Source\Helpers\Particle2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

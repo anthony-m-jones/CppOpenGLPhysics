@@ -1,4 +1,4 @@
-#include <../Source/Vector2.h>
+#include <../Source/Helpers/Vector2.h>
 
 namespace MyCppOpenGLProject {
 	Vector2::Vector2(float x, float y) {
