@@ -10,10 +10,9 @@
 #include <math.h>
 #include <cmath>
 
-
 std::vector<MyCppOpenGLProject::Particle2> particles;
 
-const int NUM_PARTICLES = 100;
+const int NUM_PARTICLES = 1000;
 
 bool upPressed = false;
 bool downPressed = false;
@@ -70,7 +69,7 @@ float rand0to1() {
 int main(void)
 {
     for (int i = 0; i < NUM_PARTICLES; i++) {
-        particles.push_back(MyCppOpenGLProject::Particle2(0, 0, 0.01f * rand0to1(), M_PI * 2 * rand0to1()));
+        particles.push_back(MyCppOpenGLProject::Particle2(0, 0.33f, 0.02f * rand0to1() + 0.01f, M_PI * 2 * rand0to1(), -0.0005f));
     }
 
     GLFWwindow* window;
