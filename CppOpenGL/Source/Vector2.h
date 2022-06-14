@@ -7,11 +7,11 @@ namespace MyCppOpenGLProject {
 		float _y = 0;
 	public:
 		Vector2(float, float);
-		void SetX(int);
+		void SetX(float x);
 
 		float GetX();
 
-		void SetY(int y);
+		void SetY(float y);
 
 		float GetY();
 

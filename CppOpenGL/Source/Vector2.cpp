@@ -1,11 +1,12 @@
 #include <../Source/Vector2.h>
+
 namespace MyCppOpenGLProject {
 	Vector2::Vector2(float x, float y) {
 		SetX(x);
 		SetY(y);
 	}
 
-	void Vector2::SetX(int x) {
+	void Vector2::SetX(float x) {
 		_x = x;
 	}
 
@@ -13,7 +14,7 @@ namespace MyCppOpenGLProject {
 		return _x;
 	}
 
-	void Vector2::SetY(int y) {
+	void Vector2::SetY(float y) {
 		_y = y;
 	}
 

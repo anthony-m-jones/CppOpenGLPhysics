@@ -6,10 +6,15 @@
 #include <../Source/ShaderUtil.h>
 #include <vector>
 #include <../Source/Vector2.h>
+#include <../Source/Particle2.h>
 #include <math.h>
 #include <cmath>
 
-std::vector<float> ballVelocity = { 0, 0, 0 };
+
+std::vector<MyCppOpenGLProject::Particle2> particles;
+
+const int NUM_PARTICLES = 100;
+
 bool upPressed = false;
 bool downPressed = false;
 bool leftPressed = false;
@@ -57,8 +62,17 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
         rightPressed = false;
 }
 
+// Returns a random float value between 0.0f and 1.0f inclusive
+float rand0to1() {
+    return static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+}
+
 int main(void)
 {
+    for (int i = 0; i < NUM_PARTICLES; i++) {
+        particles.push_back(MyCppOpenGLProject::Particle2(0, 0, 0.01f * rand0to1(), M_PI * 2 * rand0to1()));
+    }
+
     GLFWwindow* window;
 
     /* Initialize the library */
@@ -83,21 +97,7 @@ int main(void)
     }
     fprintf(stdout, "Status: Using GLEW %s\n", glewGetString(GLEW_VERSION));
 
-    float ballPosX = 0, ballPosY = 0;
-    float accelleration = 0.0001f;
     glfwSetKeyCallback(window, key_callback);
-
-    MyCppOpenGLProject::Vector2 v1{ 10,5 }, v2{ 3,4 }, v3 = v1 + v2;
-    std::cout << "My Vector2 Angle: " + std::to_string(v3.GetAngle()) << std::endl;
-    std::cout << "My Vector2 Length: " + std::to_string(v3.GetLength()) << std::endl;
-    std::cout << "My Vector2 X: " + std::to_string(v3.GetX()) << std::endl;
-    std::cout << "My Vector2 Y: " + std::to_string(v3.GetY()) << std::endl;
-
-    v3 = v3 * 2;
-    std::cout << "My Vector2 Angle: " + std::to_string(v3.GetAngle()) << std::endl;
-    std::cout << "My Vector2 Length: " + std::to_string(v3.GetLength()) << std::endl;
-    std::cout << "My Vector2 X: " + std::to_string(v3.GetX()) << std::endl;
-    std::cout << "My Vector2 Y: " + std::to_string(v3.GetY()) << std::endl;
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
@@ -106,22 +106,11 @@ int main(void)
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
 
-        // Update physics
-        if (downPressed)
-            ballVelocity[1] -= accelleration;
-        else if (upPressed) ballVelocity[1] += accelleration;
-
-        if (leftPressed)
-            ballVelocity[0] -= accelleration;
-        else if (rightPressed)
-            ballVelocity[0] += accelleration;
-
-
-        ballPosX += ballVelocity[0];
-        ballPosY += ballVelocity[1];
-
         // Render ball
-        DrawCircle(ballPosX, ballPosY, 0.1f, 45);
+        for (int i = 0; i < NUM_PARTICLES; i++) {
+            particles[i].Update();
+            DrawCircle(particles[i].position.GetX(), particles[i].position.GetY(), 0.01f, 45);
+        }
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
